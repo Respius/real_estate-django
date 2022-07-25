@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- featured search result start -->
+
+<section class="featured" id="featured">
+    <h1 class="heading"> <span>featured</span> properties </h1>
+{% if searched %}
+    <h1 class="heading">You Searched For {{ searched }}</h1>
+    <div class="box-container">
+        
+    {% for result in results %}
+        
+        <div class="box">
+            <div class="image-container">
+                <img src="{{ result.image_1.url }}" alt="" />
+                <div class="info">
+                    <h3>3 days ago</h3>
+                    <h3>for rent</h3>
+                </div>
+                <div class="icons">
+                    <a href="#" class="fas fa-film">
+                        <h3>1</h3>
+                    </a>
+                    <a href="#" class="fas fa-camera">
+                        <h3>4</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                <div class="price">
+                    <h3>${{ result.price }}/Mo</h3>
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-envelope"></a>
+                    <a href="#" class="fas fa-phone"></a>
+                </div>
+                <div class="location">
+                    <h3>{{ result.title }}</h3>
+                    <p>{{ result.address }}</p>
+                </div>
+                <div class="details">
+                    <h3> <i class="fas fa-expand fa-2x" style="color: blue"></i><strong> {{ result.square_footage }} sqft
+                        </strong></h3>
+                    <h3> <i class="fas fa-bed fa-2x" style="color: blue"></i><strong> {{ result.num_bedrooms }}
+                            beds</strong></h3>
+                    <h3> <i class="fas fa-bath fa-2x" style="color: blue"></i><strong> {{ result.num_bathrooms }} baths
+                        </strong></h3>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="btn">request info</a>
+                    <a href="listing/{{ result.id }}/" class="btn">View details</a>
+                </div>
+        
+            </div>
+        </div>
+
+    {% endfor %}
+        
+{% else %}
+        <h1>No Results Found to your search</h1>
+{% endif %}
+    </div>
+<br><br>
+
+</section>
+    <!-- featured search result ends -->
+    
+{% endblock content %}
